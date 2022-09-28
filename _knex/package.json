@@ -1,0 +1,21 @@
+{
+  "name": "knex",
+  "version": "1.0.0",
+  "description": "Auxiliar a criação de banco de dados.",
+  "main": "knexfile.js",
+  "scripts": {
+    "knex:migrate": "knex migrate:latest --knexfile knexfile.js migrate:latest",
+    "knex:seed": "knex --knexfile knexfile.js seed:run"
+  },
+  "repository": {
+    "url": "https://github.com/limazia/knex"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "knex": "^2.2.0",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.1"
+  }
+}

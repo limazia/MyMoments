@@ -7,7 +7,6 @@ O aplicativo MyMoments será desenvolvido em:
 
 - PHP
 - MySQL
-- Angular
 
 ## Autores
 
