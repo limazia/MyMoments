@@ -104,9 +104,6 @@ require_once "inc/views/navbar.php";
                         <small class="empty-description mt-3 pb-4">
                             Crie um agora mesmo
                         </small>
-                        <a class="btn btn-link" href="create.php">
-                            <i class="far fa-plus mr-1"></i> Criar momento
-                        </a>
                     </div>
                 </div>
             <?php } ?>
