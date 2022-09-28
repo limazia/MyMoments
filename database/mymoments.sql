@@ -1,7 +1,24 @@
-﻿# Host: localhost  (Version 5.5.5-10.4.13-MariaDB)
+# Host: localhost  (Version 5.5.5-10.4.13-MariaDB)
 # Date: 2022-09-28 04:48:41
 # Generator: MySQL-Front 6.0  (Build 2.20)
 
+#
+# Structure for table "users"
+#
+
+CREATE TABLE `users` (
+  `id` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `update_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#
+# Data for table "users"
+#
 
 #
 # Structure for table "moments"
@@ -24,26 +41,6 @@ CREATE TABLE `moments` (
 # Data for table "moments"
 #
 
-
-#
-# Structure for table "users"
-#
-
-CREATE TABLE `users` (
-  `id` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `update_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-#
-# Data for table "users"
-#
-
-
 #
 # Structure for table "attachments"
 #
@@ -62,4 +59,3 @@ CREATE TABLE `attachments` (
 #
 # Data for table "attachments"
 #
-
