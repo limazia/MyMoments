@@ -43,3 +43,72 @@
     cursor: not-allowed;
   }
 }
+
+.btn-create,
+.btn-create:focus,
+.btn-create:active,
+.btn-create:active:focus:not(:disabled):not(.disabled) {
+  color: #fff;
+  background: #1111cb;
+  border-color: #1111cb;
+  height: 50px;
+  border-radius: 10px;
+  transition: 0.5s ease;
+
+  &:hover {
+    color: #fff;
+    background: #3935b5;
+    border-color: #3935b5;
+  }
+
+  &:disabled,
+  button[disabled] {
+    cursor: not-allowed;
+  }
+}
+
+.btn-update,
+.btn-update:focus,
+.btn-update:active,
+.btn-update:active:focus:not(:disabled):not(.disabled) {
+  color: #fff;
+  background: #1111cb;
+  border-color: #1111cb;
+  height: 50px;
+  border-radius: 10px;
+  transition: 0.5s ease;
+
+  &:hover {
+    color: #fff;
+    background: #3935b5;
+    border-color: #3935b5;
+  }
+
+  &:disabled,
+  button[disabled] {
+    cursor: not-allowed;
+  }
+}
+
+.btn-delete,
+.btn-delete:focus,
+.btn-delete:active,
+.btn-delete:active:focus:not(:disabled):not(.disabled) {
+  color: #fff;
+  background: #e12d3a;
+  border-color: #e12d3a;
+  padding: 10px 30px;
+  border-radius: 0px;
+  transition: 0.5s ease;
+
+  &:hover {
+    color: #efefef;
+    background: #e4434f;
+    border-color: #e4434f;
+  }
+
+  &:disabled,
+  button[disabled] {
+    cursor: not-allowed;
+  }
+}

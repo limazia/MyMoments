@@ -8,5 +8,6 @@
     <link rel="stylesheet" href="<?php echo $config->urlLocal; ?>/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo $config->urlLocal; ?>/assets/css/fontawesome.min.css">
     <link rel="stylesheet" href="<?php echo $config->urlLocal; ?>/assets/css/styles.css?v=<?php echo mt_rand(); ?>">
+    <script type="text/javascript" src="<?php echo $config->urlLocal; ?>/assets/js/svg-inject.min.js"></script>
 </head>
 <body>

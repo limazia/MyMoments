@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once __DIR__ . '../../class/user.php';
+require_once __DIR__ . "../../model/user.php";
 
 // Verifique se o usuário já está logado, em caso afirmativo, redirecione-o para a página de boas-vindas
 if (isset($_SESSION['uid']) != "") {

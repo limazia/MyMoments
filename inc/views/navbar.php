@@ -7,7 +7,7 @@ $words = explode(" ", $strow["name"]);
 <header>
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-main navbar-light">
-            <a class="navbar-brand" href="/admin">
+            <a class="navbar-brand" href="<?php echo $config->urlLocal; ?>/">
                 <span class="logo-text">MyMoments</span>
             </a>
             <div class="collapse navbar-collapse">
@@ -18,7 +18,7 @@ $words = explode(" ", $strow["name"]);
                             </span>
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="/admin/settings">
+                            <a class="dropdown-item" href="settings.php">
                                 <i class="far fa-user"></i> Conta
                             </a>
                             <hr class="dropdown-divider" />

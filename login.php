@@ -9,7 +9,7 @@ require_once "inc/views/header.php";
 <div class="container h-100">
     <div class="row h-100 justify-content-center align-items-center">
         <div class="col-md-6">
-            <div class="card">
+            <div class="card card-form">
                 <div class="card-body">
                     <h2>Login</h2>
                     <p>Inicie uma sessão para continuar</p>

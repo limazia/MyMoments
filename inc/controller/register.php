@@ -1,7 +1,8 @@
 <?php
 session_start();
 
-require_once __DIR__ . '../../class/user.php';
+require_once __DIR__ . '../../model/user.php';
+require_once __DIR__ . "../../functions/id.php";
 
 // Verifique se o usuário já está logado, em caso afirmativo, redirecione-o para a página de boas-vindas
 if (isset($_SESSION['uid']) != "") {
@@ -50,6 +51,9 @@ if (isset($_POST["btn-register"])) {
   if (empty($password)) {
     $error = true;
     $password_err = "Digite uma senha";
+  } else if (strlen($password) < 6) {
+    $error = true;
+    $password_err = "A senha deve ter pelo menos 6 caracteres.";
   }
 
   if (empty($confirm_password)) {
@@ -62,7 +66,8 @@ if (isset($_POST["btn-register"])) {
 
   if (!$error && $password === $confirm_password) {
     $password_hash = hash('sha256', $password);
-     
+
+    $user->setId(random_id(10));
     $user->setName($name);
     $user->setPassword($password_hash);
     $resp = $user->create();
@@ -70,7 +75,7 @@ if (isset($_POST["btn-register"])) {
     if ($resp) {
       unset($_POST);
       echo "<script>alert('Conta criada com sucesso!');</script>";
-      echo "<script>location.href = '".$config->urlLocal . "/login.php';</script>";
+      echo "<script>location.href = '" . $config->urlLocal . "/login.php';</script>";
     } else {
       $errorType = "warning";
       $errorMSG = "Erro no servidor.";

@@ -1,15 +1,4 @@
 <?php
-
-function random_id($length){
-     $key = '';
-     $keys = array_merge(range(0, 9), range('a', 'z'));
-   
-     for ($i = 0; $i < $length; $i++) {
-       $key .= $keys[array_rand($keys)];
-     }
-   
-     return $key;
-}
    
 class User {
      private $id;
@@ -58,45 +47,62 @@ class User {
 
      public function create(){
           $pdo = new Connection();
-          $st = $pdo->conn->prepare("INSERT INTO users (id, name, email, password) VALUES (:id, :name, :email, :password)");
-          $st->bindValue(":id", random_id(10));
+
+          $st = $pdo->conn->prepare("
+               INSERT INTO users (id, name, email, password) 
+               VALUES (:id, :name, :email, :password)"
+          );
+          $st->bindValue(":id", $this->getId());
           $st->bindValue(":name", $this->getName());
           $st->bindValue(":email", $this->getEmail());
           $st->bindValue(":password", $this->getPassword());
+
           return $st->execute();
      }
 
      public function update(){
           $pdo = new Connection();
-          $st = $pdo->conn->prepare("UPDATE users SET name=:name, emaiL=:email, password=:password WHERE id=:id");
+
+          $st = $pdo->conn->prepare("
+               UPDATE users 
+               SET name = :name, emaiL = :email, password = :password 
+               WHERE id=:id"
+          );
           $st->bindValue(":id", $this->getId());
           $st->bindValue(":name", $this->getName());
           $st->bindValue(":email", $this->getEmail());
           $st->bindValue(":password", $this->getPassword());
           $st->execute();
+
           return $st->execute();
      }
 
      public function delete(){
           $pdo = new Connection();
-          $st = $pdo->conn->prepare("DELETE FROM users WHERE id=:id");
+          
+          $st = $pdo->conn->prepare("DELETE FROM users WHERE id = :id");
           $st->bindValue(":id", $this->getId());
+
           return $st->execute();
      }
 
      public function emailExists(){
           $pdo = new Connection();
-          $st = $pdo->conn->prepare("SELECT * FROM users WHERE email=:email");
+
+          $st = $pdo->conn->prepare("SELECT * FROM users WHERE email = :email");
           $st->bindValue(":email", $this->getEmail());
           $st->execute();
+
           return $st->rowCount();
      }
 
      public function getUserByEmail(){
           $pdo = new Connection();
-          $st = $pdo->conn->prepare("SELECT * FROM users WHERE email=:email");
+
+          $st = $pdo->conn->prepare("SELECT * FROM users WHERE email = :email");
           $st->bindValue(":email", $this->getEmail());
           $st->execute();
+          
           return $st;
      }
 }
