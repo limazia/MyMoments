@@ -62,6 +62,7 @@ if (isset($_POST["btn-register"])) {
   } else if ($password <> $confirm_password) {
     $error = true;
     $confirm_password_err = "Senhas não coincidem";
+    $password_err = "Senhas não coincidem";
   }
 
   if (!$error && $password === $confirm_password) {
