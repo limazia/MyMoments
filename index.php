@@ -15,7 +15,7 @@ if (isset($_GET['moment_id'])) {
     $moment->setId($_GET['moment_id']);
     if ($moment->delete()) {
         echo "<script>window.alert('Momento excluido com sucesso!');</script>";
-        echo "<script>location.href = '" . $config->urlLocal . "/';</script>";
+        echo "<script>location.href = '" . $config->url . "/';</script>";
     }
 }
 
@@ -34,6 +34,12 @@ require_once "inc/views/navbar.php";
                     <?php
                     foreach ($moments_all as $index => $moment_row) {
                         $images = explode(',', $moment_row['moment_attachments']);
+
+                        $label = $moment_row['moment_label'];
+                        $description = $moment_row['moment_description'];
+
+                        $label_ellipsi = strlen($label) > 30 ? substr($label, 0, 30)."..." : $label;
+                        $description_ellipsi = strlen($description) > 100 ? substr($description, 0, 100)."..." : $description;
                     ?>
                         <div class="col-md-6 <?php echo ($index > 1) ? "mt-5" : ""; ?>">
                             <div class="card card-moment">
@@ -74,10 +80,10 @@ require_once "inc/views/navbar.php";
                                     </div>
                                 <?php } ?>
                                 <div class="card-body">
-                                    <h5 class="card-title"><a href="moment/<?php echo $moment_row['moment_id']; ?>"><?php echo $moment_row['moment_label']; ?></a></h5>
+                                    <h5 class="card-title"><a href="moment/<?php echo $moment_row['moment_id']; ?>"><?php echo $label_ellipsi; ?></a></h5>
                                     <p class="card-text text-muted">
                                         <?php if ($moment_row['moment_description'] <> "") { ?>
-                                            <?php echo $moment_row['moment_description']; ?>
+                                            <?php echo $description_ellipsi; ?>
                                         <?php } else { ?>
                                             Sem descrição
                                         <?php } ?>
@@ -85,7 +91,7 @@ require_once "inc/views/navbar.php";
                                 </div>
                                 <div class="card-footer p-0">
                                     <a class="btn btn-delete btn-block" href="?moment_id=<?php echo $moment_row["moment_id"]; ?>" onclick="return confirm('Deseja mesmo excluir?'); ">
-                                        <i class="fas fa-trash-alt"></i>
+                                        Excluir
                                     </a>
                                 </div>
                             </div>
@@ -102,7 +108,7 @@ require_once "inc/views/navbar.php";
                             Nenhum momento encontrado
                         </span>
                         <small class="empty-description mt-3 pb-4">
-                            Crie um agora mesmo
+                            Salve seu momento favorito agora mesmo
                         </small>
                     </div>
                 </div>

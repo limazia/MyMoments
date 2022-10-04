@@ -1,6 +1,6 @@
 <?php
    
-class User {
+class User extends Connection {
      private $id;
      private $name;
      private $email;
@@ -84,16 +84,6 @@ class User {
           $st->bindValue(":id", $this->getId());
 
           return $st->execute();
-     }
-
-     public function emailExists(){
-          $pdo = new Connection();
-
-          $st = $pdo->conn->prepare("SELECT * FROM users WHERE email = :email");
-          $st->bindValue(":email", $this->getEmail());
-          $st->execute();
-
-          return $st->rowCount();
      }
 
      public function getUserByEmail(){

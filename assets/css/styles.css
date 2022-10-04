@@ -23,7 +23,7 @@
 }
 
 .navbar-main {
-  padding: 1.5rem 1rem;
+  padding: 1.5rem 0 1.5rem 1rem;
 }
 .navbar-main .navbar-brand {
   display: flex;
@@ -446,6 +446,7 @@ select:not(select) {
 
 textarea.form-control {
   resize: none;
+  padding-top: 10px;
 }
 
 .wicon {

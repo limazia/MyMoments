@@ -14,7 +14,7 @@ if (isset($_GET['moment_id'])) {
 
   if ($moment_count == 0) {
     echo "<script>alert('Esse momento não existe');</script>";
-    echo "<script>location.href = '" . $config->urlLocal . "/';</script>";
+    echo "<script>location.href = '" . $config->url . "/';</script>";
   }
 
   $page_title = $moment_row['moment_label'];
@@ -30,12 +30,14 @@ require_once "inc/views/navbar.php";
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-center">
             <div>
-              <h2><?php echo $moment_row["moment_label"]; ?></h2>
-              <p class="text-muted"><?php if ($moment_row['moment_description'] <> "") { ?>
+              <h2 style="width: 500px;"><?php echo $moment_row["moment_label"]; ?></h2>
+              <p class="text-muted" style="width: 500px;">
+                <?php if ($moment_row['moment_description'] <> "") { ?>
                   <?php echo $moment_row['moment_description']; ?>
                 <?php } else { ?>
                   Sem descrição
-                <?php } ?></p>
+                <?php } ?>
+              </p>
             </div>
             <a href="../update/<?php echo $_GET['moment_id']; ?>">Editar momento</a>
           </div>

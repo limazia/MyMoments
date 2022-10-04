@@ -15,11 +15,11 @@ require_once "inc/views/header.php";
                     <p>Inicie uma sessão para continuar</p>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <div class="form-group">
-                            <input type="email" name="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" placeholder="Email" value="<?php echo (isset($email)) ? $email : ''; ?>">
+                            <input type="email" name="email" class="form-control form-username <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" placeholder="Email" value="<?php echo (isset($email)) ? $email : ''; ?>">
                             <span class="invalid-feedback"><?php echo $email_err; ?></span>
                         </div>
                         <div class="form-group">
-                            <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" placeholder="Senha">
+                            <input type="password" name="password" class="form-control form-password <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" placeholder="Senha">
                             <span class="invalid-feedback"><?php echo $password_err; ?></span>
                         </div>
                         <?php if (isset($errorMSG)) { ?>

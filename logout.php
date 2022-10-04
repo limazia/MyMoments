@@ -5,5 +5,5 @@ session_start();
 
 session_unset();
 session_destroy();
-header("Location: " . $config->urlLocal);
+header("Location: " . $config->url);
 exit;

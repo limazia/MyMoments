@@ -2,17 +2,14 @@
 session_start();
 
 require_once __DIR__ . '../../model/user.php';
-require_once __DIR__ . "../../functions/id.php";
 
-// Verifique se o usuário já está logado, em caso afirmativo, redirecione-o para a página de boas-vindas
 if (isset($_SESSION['uid']) != "") {
-  header("Location: " . $config->urlLocal . "/");
+  header("Location: " . $config->url . "/");
   exit;
 }
 
 $error = false;
 
-//Verifica o pressionamento da tecla entrar da tela login.
 if (isset($_POST["btn-register"])) {
   $user = new User();
 
@@ -33,7 +30,8 @@ if (isset($_POST["btn-register"])) {
   $confirm_password = htmlspecialchars($confirm_password);
 
   $user->setEmail($email);
-  $check_email = $user->emailExists();
+  $check_email = $user->getUserByEmail();
+  $email_count = $check_email->rowCount();
 
   if (empty($name)) {
     $error = true;
@@ -43,7 +41,7 @@ if (isset($_POST["btn-register"])) {
   if (empty($email)) {
     $error = true;
     $email_err = "Digite um email";
-  } else if ($check_email > 0) {
+  } else if ($email_count > 0) {
     $error = true;
     $email_err = "Email já registrado";
   }
@@ -65,24 +63,29 @@ if (isset($_POST["btn-register"])) {
     $password_err = "Senhas não coincidem";
   } else if (strlen($confirm_password) < 6) {
     $error = true;
-    $password_err = "A senha deve ter pelo menos 6 caracteres.";
+    $confirm_password_err = "A senha deve ter pelo menos 6 caracteres";
   }
 
   if (!$error && $password === $confirm_password) {
     $password_hash = hash('sha256', $password);
 
-    $user->setId(random_id(10));
+    $id = createId(10);
+
+    $user->setId($id);
     $user->setName($name);
     $user->setPassword($password_hash);
     $resp = $user->create();
 
     if ($resp) {
+      $_SESSION['loggedin'] = true;
+      $_SESSION['uid'] = $id;
+
       unset($_POST);
-      echo "<script>alert('Conta criada com sucesso!');</script>";
-      echo "<script>location.href = '" . $config->urlLocal . "/login.php';</script>";
+      echo "<script>alert('Conta criada com sucesso');</script>";
+      echo "<script>location.href = '" . $config->url . "/';</script>";
     } else {
       $errorType = "warning";
-      $errorMSG = "Erro no servidor.";
+      $errorMSG = "Erro no servidor";
     }
   }
 }

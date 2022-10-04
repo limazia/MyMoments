@@ -3,15 +3,13 @@ session_start();
 
 require_once __DIR__ . "../../model/user.php";
 
-// Verifique se o usuário já está logado, em caso afirmativo, redirecione-o para a página de boas-vindas
 if (isset($_SESSION['uid']) != "") {
-  header("Location: " . $config->urlLocal . "/");
+  header("Location: " . $config->url . "/");
   exit;
 }
 
 $error = false;
 
-//Verifica o pressionamento da tecla entrar da tela login.
 if (isset($_POST["btn-login"])) {
   $email = trim($_POST['email']);
   $email = strip_tags($email);
@@ -30,7 +28,6 @@ if (isset($_POST["btn-login"])) {
     $password_err = "Digite uma senha";
   }
 
-  //se todos os campos estiverem preenchidos  transforma a senha digitada na criptografia sha256
   if (!$error) {
     $password_hash = hash('sha256', $password);
 
@@ -41,12 +38,11 @@ if (isset($_POST["btn-login"])) {
     $strow = $resp->fetch();
     $stcount = $resp->rowCount();
 
-    //Verifica se o user selecionado condiz com a senha criptografada.
     if ($stcount == 1 && $strow['password'] == $password_hash) {
       $_SESSION['loggedin'] = true;
       $_SESSION['uid'] = $strow['id'];
       unset($_POST);
-      header("Location: " . $config->urlLocal . "/");
+      header("Location: " . $config->url . "/");
       exit;
     } else if ($stcount == 0) {
       $errorType = "danger";
