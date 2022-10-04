@@ -63,6 +63,9 @@ if (isset($_POST["btn-register"])) {
     $error = true;
     $confirm_password_err = "Senhas não coincidem";
     $password_err = "Senhas não coincidem";
+  } else if (strlen($confirm_password) < 6) {
+    $error = true;
+    $password_err = "A senha deve ter pelo menos 6 caracteres.";
   }
 
   if (!$error && $password === $confirm_password) {
