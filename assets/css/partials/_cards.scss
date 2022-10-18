@@ -70,3 +70,33 @@
     -webkit-user-drag: none;
   }
 }
+
+.card-settings {
+  .card-body {
+    .card-title {
+      text-align: left;
+      font-size: 20px;
+      font-weight: 600;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.6;
+      letter-spacing: -0.56px;
+      color: #000;
+      margin-top: 0;
+      margin-bottom: 24px;
+    }
+
+    .input-editable {
+      span {
+        font-weight: bold;
+        color: #939ba2;
+      }
+
+      p {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
+}

@@ -5,7 +5,7 @@ MyMoments é um web app para salvar seus melhores momentos.
 
 O aplicativo MyMoments será desenvolvido em:
 
-- PHP
+- PHP (PDO & POO)
 - MySQL
 
 ## Autores

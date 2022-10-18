@@ -22,6 +22,14 @@
   line-height: 1.2;
 }
 
+.logo-text {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 .navbar-main {
   padding: 1.5rem 0 1.5rem 1rem;
 }
@@ -35,13 +43,6 @@
 }
 .navbar-main .navbar-brand:hover, .navbar-main .navbar-brand:focus, .navbar-main .navbar-brand:active, .navbar-main .navbar-brand:active:focus:not(:disabled):not(.disabled) {
   color: #000;
-}
-.navbar-main .navbar-brand .logo-text {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
 .navbar-main .navbar-brand img,
 .navbar-main .navbar-brand svg {
@@ -376,6 +377,28 @@ button:active:focus:not(:disabled):not(.disabled) {
   -o-object-fit: cover;
      object-fit: cover;
   -webkit-user-drag: none;
+}
+
+.card-settings .card-body .card-title {
+  text-align: left;
+  font-size: 20px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.6;
+  letter-spacing: -0.56px;
+  color: #000;
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+.card-settings .card-body .input-editable span {
+  font-weight: bold;
+  color: #939ba2;
+}
+.card-settings .card-body .input-editable p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .form-control {

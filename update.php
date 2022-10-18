@@ -13,7 +13,7 @@ if (isset($_GET['moment_id'])) {
   $moment_row = $read->fetch();
   $moment_count = $read->rowCount();
 
-  if ($moment_count == 0) {
+  if ($moment_count == 0 OR $moment_row["id_user"] != $_SESSION["uid"]) {
     echo "<script>alert('Esse momento não existe');</script>";
     echo "<script>location.href = '" . $config->url . "/';</script>";
   }
@@ -32,6 +32,7 @@ require_once "inc/views/navbar.php";
           <h2><?php echo $page_title; ?></h2>
           <form class="mt-4" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
           <input type="hidden" name="moment_id" value="<?php echo $moment_row["moment_id"]; ?>">
+          <input type="hidden" name="attachment_id" value="<?php echo $moment_row["id_attachment"]; ?>">
             <div class="form-group">
               <input type="text" name="moment_label" class="form-control <?php echo (!empty($label_err)) ? 'is-invalid' : ''; ?>" placeholder="Nome" value="<?php echo $moment_row["moment_label"]; ?>">
               <span class="invalid-feedback"><?php echo $label_err; ?></span>
@@ -40,7 +41,7 @@ require_once "inc/views/navbar.php";
               <textarea class="form-control" name="moment_description" rows="4" placeholder="Descrição"><?php echo $moment_row["moment_description"]; ?></textarea>
             </div>
             <div class="form-group">
-              <textarea class="form-control" name="moment_attachments" rows="5" placeholder="Imagens (separe os links por virgula)"><?php echo $moment_row["moment_attachments"]; ?></textarea>
+              <textarea class="form-control" name="attachments" rows="5" placeholder="Imagens (separe os links por virgula)"><?php echo $moment_row["attachments"]; ?></textarea>
             </div>
             <?php if (isset($errorMSG)) { ?>
               <div class="alert alert-<?php echo ($errorType == "success") ? "success" : $errorType; ?> alert-dismissible fade show">

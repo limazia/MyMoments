@@ -12,7 +12,7 @@ if (isset($_GET['moment_id'])) {
   $moment_row = $read->fetch();
   $moment_count = $read->rowCount();
 
-  if ($moment_count == 0) {
+  if ($moment_count == 0 OR $moment_row["id_user"] != $_SESSION["uid"]) {
     echo "<script>alert('Esse momento não existe');</script>";
     echo "<script>location.href = '" . $config->url . "/';</script>";
   }
@@ -42,9 +42,9 @@ require_once "inc/views/navbar.php";
             <a href="../update/<?php echo $_GET['moment_id']; ?>">Editar momento</a>
           </div>
           <div class="row">
-            <?php if ($moment_row['moment_attachments'] <> "") { ?>
+            <?php if ($moment_row['attachments'] <> "") { ?>
               <?php
-              $images = explode(',', $moment_row['moment_attachments']);
+              $images = explode(',', $moment_row['attachments']);
               foreach ($images as $index => $image) {
               ?>
                 <div class="col-md-4">

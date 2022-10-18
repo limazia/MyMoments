@@ -24,11 +24,16 @@ if (isset($_POST["btn-create-moment"])) {
   }
 
   if (!$error) {
-    $moment->setId(createId(30));
+    $momentId = createId(30);
+    $attachmentId = createId(20);
+    
+    $moment->setId($momentId);
     $moment->setLabel($moment_label);
     $moment->setDescription($moment_description);
-    $moment->setAttachments($moment_attachments);
+    $moment->setAttachment($attachmentId);
     $moment->setUserId($_SESSION["uid"]);
+    $moment->setAttachmentId($attachmentId);
+    $moment->setAttachments($moment_attachments);
     $resp = $moment->create();
 
     if ($resp) {
@@ -57,9 +62,13 @@ if (isset($_POST["btn-update-moment"])) {
   $moment_description = strip_tags($moment_description);
   $moment_description = htmlspecialchars($moment_description);
 
-  $moment_attachments = trim($_POST['moment_attachments']);
-  $moment_attachments = strip_tags($moment_attachments);
-  $moment_attachments = htmlspecialchars($moment_attachments);
+  $attachment_id = trim($_POST['attachment_id']);
+  $attachment_id = strip_tags($attachment_id);
+  $attachment_id = htmlspecialchars($attachment_id);
+
+  $attachments = trim($_POST['attachments']);
+  $attachments = strip_tags($attachments);
+  $attachments = htmlspecialchars($attachments);
 
   if (empty($moment_label)) {
     $error = true;
@@ -70,7 +79,8 @@ if (isset($_POST["btn-update-moment"])) {
     $moment->setId($moment_id);
     $moment->setLabel($moment_label);
     $moment->setDescription($moment_description);
-    $moment->setAttachments($moment_attachments);
+    $moment->setAttachmentId($attachment_id);
+    $moment->setAttachments($attachments);
     $resp = $moment->update();
 
     if ($resp) {

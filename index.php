@@ -13,6 +13,11 @@ $page_title = "Dashboard";
 
 if (isset($_GET['moment_id'])) {
     $moment->setId($_GET['moment_id']);
+
+    $read = $moment->getMomentById();
+    $moment_row = $read->fetch();
+    
+    $moment->setAttachmentId($moment_row['id_attachment']);
     if ($moment->delete()) {
         echo "<script>window.alert('Momento excluido com sucesso!');</script>";
         echo "<script>location.href = '" . $config->url . "/';</script>";
@@ -26,14 +31,14 @@ require_once "inc/views/navbar.php";
     <div class="row">
         <div class="col-md-12">
             <div class="d-flex justify-content-between align-items-center">
-                <h3 class="pb-2">Oi, <b><?php echo $strow["name"]; ?></b>. Bem vindo á Dashboard.</h3>
+                <h3 class="pb-2">Bem-vindo ao Dashboard</h3>
                 <a href="create.php">Criar momento</a>
             </div>
             <?php if ($moments_count > 0) { ?>
                 <div class="row">
                     <?php
                     foreach ($moments_all as $index => $moment_row) {
-                        $images = explode(',', $moment_row['moment_attachments']);
+                        $images = explode(',', $moment_row['attachments']);
 
                         $label = $moment_row['moment_label'];
                         $description = $moment_row['moment_description'];
@@ -43,7 +48,7 @@ require_once "inc/views/navbar.php";
                     ?>
                         <div class="col-md-6 <?php echo ($index > 1) ? "mt-5" : ""; ?>">
                             <div class="card card-moment">
-                                <?php if ($moment_row['moment_attachments'] <> "") { ?>
+                                <?php if ($moment_row['attachments'] <> "") { ?>
                                     <div class="moment-image">
                                         <?php if (count($images) >= 2) { ?>
                                             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -74,7 +79,7 @@ require_once "inc/views/navbar.php";
                                                 </a>
                                             </div>
                                         <?php } else { ?>
-                                            <img class="card-img-top" src="<?php echo $moment_row['moment_attachments']; ?>" alt="" />
+                                            <img class="card-img-top" src="<?php echo $moment_row['attachments']; ?>" alt="" />
 
                                         <?php } ?>
                                     </div>
